@@ -6,17 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="img/favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="css/styles.min.css">
+    <link rel="stylesheet" href="css/styles.css">
     <title>Document</title>
 </head>
 
 <body>
 
+
     <div class="chat">
+
         <div id="sidebar" class="chat__sidebar">
 
+
         </div>
-        <div class="chat__main">
+        <div id="main" class="chat__main">
+            <button class="openbtn" onclick="openNav()">☰ Open Sidebar</button>
             <div id="messages" class="chat__messages"></div>
 
             <div class="compose">
@@ -51,6 +55,7 @@
         </div>
     </script>
     <script id="sidebarTemplate" type="text/html">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
         <h2 class="room-title">{{room}}</h2>
         <h3 class="list-title">Users</h3>
         <ul class="users">
@@ -58,6 +63,45 @@
             <li>{{name}}</li>
             {{/users}}
         </ul>
+    </script>
+
+    <script>
+        function openNav() {
+            document.getElementById('sidebar').style.width = "100vw";
+            document.getElementById('main').style.width = "0";
+        }
+
+        function closeNav() {
+            document.getElementById("sidebar").style.width = "0";
+            document.getElementById("main").style.width = "100vw";
+        }
+
+        // Create a condition that targets viewports at least 768px wide
+        const mediaQueryOne = window.matchMedia('(min-width: 480px)');
+        const mediaQueryTwo = window.matchMedia('(max-width: 480px)');
+
+        function handleMinChange(e) {
+            if (e.matches) {
+                //console.log("maxwidth")
+                document.getElementById('sidebar').style.width = "0";
+            }
+        }
+
+        mediaQueryTwo.addListener(handleMinChange);
+
+        function handleTabletChange(e) {
+            // Check if the media query is true
+            if (e.matches) {
+                // Then log the following message to the console
+                //console.log("minwidth")
+                document.getElementById('sidebar').style.width = "225px";
+                document.getElementById('main').style.width = "100%";
+            }
+        }
+
+        // Register event listener
+        mediaQueryOne.addListener(handleTabletChange)
+
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>

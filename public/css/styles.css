@@ -90,11 +90,16 @@ button:disabled {
 }
 
 .chat__sidebar {
+    display: block;
     height: 100vh;
     color: white;
     background: #333744;
     width: 225px;
     overflow-y: scroll
+}
+
+.closebtn {
+    display: none;
 }
 
 /* Chat styles */
@@ -104,6 +109,10 @@ button:disabled {
     display: flex;
     flex-direction: column;
     max-height: 100vh;
+}
+
+.openbtn {
+    display: none;
 }
 
 .chat__messages {
@@ -180,4 +189,66 @@ button:disabled {
     list-style-type: none;
     font-weight: 300;
     padding: 12px 24px 0 24px;
+}
+
+@media only screen and (max-width:480px) {
+    .centered-form__box {
+        width: 90vw;
+        height: 60vh;
+    }
+
+    .centered-form button {
+        margin-top: 30px;
+        width: 100%;
+    }
+    
+    .centered-form input {
+        margin-bottom: 20px;
+        width: 100%;
+    }
+
+    .chat__sidebar {
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        transition: 0.5s;
+    }
+
+    .chat__sidebar a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+        transition: 0.3s;
+    }
+
+    .chat__sidebar .closebtn {
+        display: inline;
+        position: absolute;
+        top: 0;
+        right: 10vw;
+        font-size: 36px;
+        margin-left: 80vw;
+      }
+
+    .chat__main {
+        min-height: 100vh;
+    }
+    
+    .openbtn {
+        display: block;
+        text-align: left;
+        cursor: pointer;
+    }
+
+    .chat__main {
+        transition: width 0.5s;
+    }
+
+    #form-submit {
+        display: none;
+    }
 }
